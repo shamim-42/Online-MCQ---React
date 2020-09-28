@@ -6,15 +6,27 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "antd": "^4.6.6",
+    "axios": "^0.20.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-redux": "^7.2.1",
+    "react-scripts": "3.4.3",
+    "redux-persist": "^6.0.0",
+    "socket.io-client": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "compile:less": "lessc --js src/less/main.less src/assets/css/antd.comp.css",
+    "compress:less": "node-sass src/assets/css/antd.comp.css src/assets/css/antd.css --output-style compressed",
+    "compile:sass": "node-sass src/sass/main.scss src/assets/css/styles.comp.css",
+    "prefix:css": "postcss src/assets/css/styles.comp.css --use=autoprefixer -o src/assets/css/styles.prefix.css",
+    "compress:css": "node-sass src/assets/css/styles.prefix.css src/assets/css/styles.css --output-style compressed",
+    "build:css": "npm-run-all compile:less compress:less compile:sass prefix:css compress:css",
+    "watch:sass": "node-sass src/sass/main.scss src/assets/css/styles.css -w"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,5 +42,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "node-sass": "^4.14.1",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^8.0.0"
   }
 }
